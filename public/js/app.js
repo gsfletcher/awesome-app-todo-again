@@ -3,6 +3,7 @@
 const ToDoApp = {
   rootElement: '#app',
   todos: [],
+
   start: function(){
     this.cacheDOM();
     this.bindEvents();
@@ -23,10 +24,12 @@ const ToDoApp = {
     if(!taskValue){
       return;
     }
+
   const todo = {
     task: taskValue,
     isComplete: false,
   };
+
   this.todos.push(todo);
   this.render();
   this.taskInput.value = '';
@@ -43,15 +46,41 @@ const ToDoApp = {
     this.todos.splice(index, 1);
     this.render();
   },
+  addLi: function() {
+    this.todos.map(todo => {
+    const lis = document.createElement('li');
+        console.log(todo.task);
+        lis.textContent= `${todo.task}`;
+        this.todoList.appendChild(lis);
+        // this.todoList.innerHTML = lis;
+});
+        // const deleteButton = document.createElement('button').className = 'delete';
+        // lis.appendChild(deleteButton);
+        // // this.render();
+        // return lis.textContent + deleteButton;
+
+  },
   render: function(){
-    const element = document.createElement('li');
-      element.map()
-    // const lis = this.todos
-    //                     .map(todo => `<li>${todo.task}<button class="delete">X</button></li>`)
-    //                     .join('');
-    // this.todoList.innerHTML = lis;
+    this.todos.map(todo => this.addLi())
+              .join('');
+
     this.cacheDeleteButtons();
     this.bindDeleteEvents();
-  }
+
+}
+
 };
 ToDoApp.start();
+
+
+/* const arr = [1, 2, 3, 4];
+const results = arr.map(number => <p>${number}</p>);
+  IS THE SAME AS
+const resultsAgain = arr.map(function mapper(number) {
+ return <p>${number}</p>;
+}
+ )*/
+ // const lis = this.todos
+ //            .map(todo => `<li>${todo.task}<button class="delete">X</button></li>`)
+ //            .join('');
+ // this.todoList.innerHTML = lis;

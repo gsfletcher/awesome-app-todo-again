@@ -47,17 +47,13 @@ const ToDoApp = {
     this.render();
   },
   addLi: function() {
-    this.todos.map(todo => {
     const lis = document.createElement('li');
-        console.log(todo.task);
         lis.textContent= `${todo.task}`;
         this.todoList.appendChild(lis);
-        // this.todoList.innerHTML = lis;
-});
-        // const deleteButton = document.createElement('button').className = 'delete';
-        // lis.appendChild(deleteButton);
-        // // this.render();
-        // return lis.textContent + deleteButton;
+        this.todoList.innerHTML = lis;
+    // const deleteButton = document.createElement('button').className = 'delete';
+    //     lis.appendChild(deleteButton);
+    //     return lis.textContent + deleteButton;
 
   },
   render: function(){

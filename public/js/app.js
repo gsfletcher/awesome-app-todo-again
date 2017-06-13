@@ -3,6 +3,7 @@
 const ToDoApp = {
   rootElement: '#app',
   todos: [],
+
   start: function(){
     this.cacheDOM();
     this.bindEvents();
@@ -23,10 +24,12 @@ const ToDoApp = {
     if(!taskValue){
       return;
     }
+
   const todo = {
     task: taskValue,
     isComplete: false,
   };
+
   this.todos.push(todo);
   this.render();
   this.taskInput.value = '';
@@ -43,15 +46,25 @@ const ToDoApp = {
     this.todos.splice(index, 1);
     this.render();
   },
-  render: function(){
-    const element = document.createElement('li');
-      element.map()
-    // const lis = this.todos
-    //                     .map(todo => `<li>${todo.task}<button class="delete">X</button></li>`)
-    //                     .join('');
-    // this.todoList.innerHTML = lis;
+  addLi: function(todo) {
+    const li = document.createElement('li');
+    const liContent = `${todo.task}`;
+    li.textContent = liContent;
+    return li;
+  },
+  render: function() {
+    const lis = this.todos.map(todo => this.addLi(todo));
+    this.todoList.innerHTML = '';
+    lis.forEach(li => this.todoList.appendChild(li));
     this.cacheDeleteButtons();
     this.bindDeleteEvents();
-  }
+
+}
+
 };
 ToDoApp.start();
+
+ // const lis = this.todos
+ //            .map(todo => `<li>${todo.task}<button class="delete">X</button></li>`)
+ //            .join('');
+ // this.todoList.innerHTML = lis;
